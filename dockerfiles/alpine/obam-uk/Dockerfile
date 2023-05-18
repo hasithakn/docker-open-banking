@@ -68,13 +68,6 @@ ARG DB_OB_REPORTING_SUMMARIZED=openbank_ob_reporting_summarizeddb
 # change user to root for elevated permissions to override inherited non-root user
 USER root
 
-# install dependencies
-RUN if [ "${BASE_PRODUCT_VERSION}" = "4.2.0" ]; then \
-        apt-get update \
-        && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends unzip wget \
-        && rm -rf /var/lib/apt/lists/* ; \
-    fi
-
 # add Open Banking artifacts to base product
 RUN \
     wget -O ${WSO2_OB_TOOLKIT}.zip "${WSO2_OB_TOOLKIT_DIST_URL}" \
